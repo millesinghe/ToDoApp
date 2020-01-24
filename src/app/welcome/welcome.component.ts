@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -7,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  subtitle = 'Welcome Submessage of the Page';
+  title = 'Welcome to the  ToDo Application';
+  usName = '';
   
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.usName = this.route.snapshot.params['name'];
+    console.log()
   }
 
 }
