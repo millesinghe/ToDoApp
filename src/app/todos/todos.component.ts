@@ -12,10 +12,10 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
   }
 
-  todoObj = {
-    id: 1,
-    task: 'wedding',
-    status: false
-  }
+  todoList = [
+    { id: 1, task: 'wedding', status: false },
+    { id: 2, task: 'Fly Singapore', status: false },
+    { id: 3, task: 'Find a Job', status: false }
+  ]
 
 }
