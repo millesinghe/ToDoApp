@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
 
-  title = 'Welcome to the  ToDo Application';
+  title = 'Welcome';
   usName = '';
   
   constructor(private route: ActivatedRoute) { }

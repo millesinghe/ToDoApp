@@ -13,9 +13,19 @@ export class TodosComponent implements OnInit {
   }
 
   todoList = [
-    { id: 1, task: 'wedding', status: false },
-    { id: 2, task: 'Fly Singapore', status: false },
-    { id: 3, task: 'Find a Job', status: false }
+    new ToDo(1, 'wedding', false, new Date()),
+    new ToDo(2, 'Fly Singapore', false, new Date()),
+    new ToDo(3, 'Find a Job', false, new Date()),
   ]
 
+}
+
+export class ToDo {
+  constructor(
+    public id: number,
+    public task: string,
+    public status: boolean,
+    public dueDate: Date
+  ) {
+  }
 }

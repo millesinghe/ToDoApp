@@ -2,9 +2,10 @@
     <caption>My Task List</caption>
     <thead>
         <tr>
-            <th>id</th>
-            <th>task</th>
-            <th>status</th>
+            <th></th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Target</th>            
         </tr>
     </thead>
     <tbody>
@@ -12,6 +13,7 @@
             <td>{{todoObj.id}}</td>
             <td>{{todoObj.task}}</td>
             <td>{{todoObj.status}}</td>
+            <td>{{todoObj.dueDate | date}}</td>
         </tr>
     </tbody>
 </table>
