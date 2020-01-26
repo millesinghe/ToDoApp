@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   constructor() { }
-
-  crNote = 'Milinda Bandara';
+  
+  footNote = "All Right Reserved 2019 @ Milinda Bandara";
   
   ngOnInit() {
   }

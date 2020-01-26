@@ -1,15 +1,15 @@
-<table border="1">
-    <caption>My Task List</caption>
+<h1>My Task List</h1>
+<table class="table">
     <thead>
         <tr>
             <th></th>
             <th>Task</th>
             <th>Status</th>
-            <th>Target</th>            
+            <th>Target</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = 'let todoObj of todoList'>
+        <tr *ngFor='let todoObj of todoList'>
             <td>{{todoObj.id}}</td>
             <td>{{todoObj.task}}</td>
             <td>{{todoObj.status}}</td>
