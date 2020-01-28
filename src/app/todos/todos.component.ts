@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToDoService } from '../service/data/to-do.service';
 
 @Component({
   selector: 'app-todos',
@@ -7,16 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toDoService: ToDoService) { }
+
+  todoList
 
   ngOnInit() {
+    let username = sessionStorage.getItem('authUser');
+    console.log('todo user - ' + username);
+    this.toDoService.findAllToDos(username).subscribe(
+      response => {
+        this.todoList = response;
+        console.log(this.todoList);
+      } ,
+      error => console.log(error));
   }
-
-  todoList = [
-    new ToDo(1, 'wedding', false, new Date()),
-    new ToDo(2, 'Fly Singapore', false, new Date()),
-    new ToDo(3, 'Find a Job', false, new Date()),
-  ]
 
 }
 
@@ -24,8 +29,9 @@ export class ToDo {
   constructor(
     public id: number,
     public task: string,
+    public username: string,
     public status: boolean,
-    public dueDate: Date
+    public date: Date
   ) {
   }
 }

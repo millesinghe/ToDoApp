@@ -1,4 +1,15 @@
 <h1>{{title}}</h1>
 <p>Hi {{usName}},</p>
-
-<p>You can create your tasks in our <a routerLink = '/todo'>To-Do List</a> </p>
+<div class="conatainer" *ngIf=errorResponsMsg>
+    <p>{{errorResponsMsg}}</p>
+</div>
+<div class="conatainer">
+    <p>You can create your tasks in our <a routerLink='/todo'>To-Do List</a></p>
+</div>
+<div class="conatainer">
+    <div>Server test with Custom Message</div><input [(ngModel)] = customMsg>
+    <button class="btn btn-success" (click)="executeTestServer()">Test Server</button>
+</div>
+<div class="conatainer" *ngIf=serverResponsMsg>
+    <h4>{{serverResponsMsg}}</h4>
+</div>

@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false;
       this.route.navigate(['welcome',this.username])
       console.log('success');
+      console.log(this.hardcodedAuthentication.isUserLoggedIn())
     }else{
       this.invalidLogin = true;
       this.loggingMsg = 'Invalid Username or Password';
