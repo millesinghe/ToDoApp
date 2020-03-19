@@ -6,6 +6,7 @@
             <th>Task</th>
             <th>Target</th>
             <th>Status</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
             <td>{{todoObj.task}}</td>
             <td>{{todoObj.date | date}}</td>
             <td>{{todoObj.status}}</td>
+            <td><div class="d-flex flex-row"><div><button (click)="updateTask(todoObj.id)" class="btn btn-success" >Update</button></div><div><button (click)="deleteTask(todoObj.id)" class="btn btn-warning" >Delete</button></div></div></td>
         </tr>
     </tbody>
 </table>

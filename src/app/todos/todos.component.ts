@@ -15,6 +15,10 @@ export class TodosComponent implements OnInit {
   ngOnInit() {
     let username = sessionStorage.getItem('authUser');
     console.log('todo user - ' + username);
+    this.refreshToDos(username);
+  }
+
+  refreshToDos(username){
     this.toDoService.findAllToDos(username).subscribe(
       response => {
         this.todoList = response;
@@ -23,6 +27,18 @@ export class TodosComponent implements OnInit {
       error => console.log(error));
   }
 
+  deleteTask(id){
+    let username = sessionStorage.getItem('authUser');
+    console.log('todo user - ' + username + ' with id - '+ id);
+   
+     this.toDoService.deleteToDos(username,id).subscribe(
+       response => {
+         this.refreshToDos(username);
+       } ,
+       error => console.log(error));
+  }
+
+  
 }
 
 export class ToDo {
