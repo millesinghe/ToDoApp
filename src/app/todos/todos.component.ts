@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoService } from '../service/data/to-do.service';
+import { Router } from '@angular/router';
+import { TodoComponent } from '../todo/todo.component';
 
 @Component({
   selector: 'app-todos',
@@ -8,46 +10,54 @@ import { ToDoService } from '../service/data/to-do.service';
 })
 export class TodosComponent implements OnInit {
 
-  constructor(private toDoService: ToDoService) { }
+  constructor(private toDoService: ToDoService, private router: Router) { }
 
-  todoList
+  todoList;
 
   ngOnInit() {
     let username = sessionStorage.getItem('authUser');
-    console.log('todo user - ' + username);
     this.refreshToDos(username);
   }
 
-  refreshToDos(username){
+  refreshToDos(username) {
     this.toDoService.findAllToDos(username).subscribe(
       response => {
         this.todoList = response;
         console.log(this.todoList);
-      } ,
+      },
       error => console.log(error));
   }
 
-  deleteTask(id){
+  deleteTask(id) {
     let username = sessionStorage.getItem('authUser');
-    console.log('todo user - ' + username + ' with id - '+ id);
-   
-     this.toDoService.deleteToDos(username,id).subscribe(
-       response => {
-         this.refreshToDos(username);
-       } ,
-       error => console.log(error));
+
+    this.toDoService.deleteToDos(username, id).subscribe(
+      response => {
+        this.refreshToDos(username);
+      },
+      error => console.log(error));
   }
 
-  
+  updateTask(id) {
+    let username = sessionStorage.getItem('authUser');
+    this.router.navigate(['todo', id])
+
+  }
+
+  addTask(){
+    let username = sessionStorage.getItem('authUser');
+    this.router.navigate(['todo',0]);
+  }
 }
 
 export class ToDo {
+
   constructor(
-    public id: number,
-    public task: string,
-    public username: string,
-    public status: boolean,
-    public date: Date
+    id: number,
+    username: string,
+    task: string,
+    status: boolean,
+    date: Date
   ) {
   }
 }

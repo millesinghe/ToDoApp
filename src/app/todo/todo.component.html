@@ -1,1 +1,26 @@
-<p>todo works!</p>
+<h2>ToDo Task</h2>
+<div class="alert alert-danger" *ngIf="formToDo.dirty && formToDo.invalid">Missing Values in the Form </div>
+<div class="alert alert-warning" *ngIf="verifyTask.dirty && verifyTask.invalid">Task need some value</div>
+<div class="alert alert-warning" *ngIf="verifyStatus.dirty && verifyStatus.invalid">Status need some value</div>
+
+<div class="container">
+    <form (ngSubmit)="!formToDo.invalid && updateToDo()" #formToDo="ngForm">
+        <fieldset class="form-group">
+            <label>Task</label>
+            <input class="form-control" name="tname" type="text" #verifyTask="ngModel" required="required" minlength="5" [(ngModel)]="todo.task">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label>Target Date</label>
+            <input class="form-control" name="tdate" type="date" [ngModel]="todo.date | date:'yyyy-MM-dd'"
+                (ngModelChange)="todo.date = $event">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label>Status *</label>
+            <input class="form-control" name="tstatus" type="text" #verifyStatus="ngModel" required="required" [(ngModel)]="todo.status">
+        </fieldset>
+        <button class="btn btn-success" type="submit">Save</button><button class="btn btn-danger" (click)="goBack()">Cancel</button>
+    </form>
+
+</div>

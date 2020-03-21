@@ -15,7 +15,16 @@
             <td>{{todoObj.task}}</td>
             <td>{{todoObj.date | date}}</td>
             <td>{{todoObj.status}}</td>
-            <td><div class="d-flex flex-row"><div><button (click)="updateTask(todoObj.id)" class="btn btn-success" >Update</button></div><div><button (click)="deleteTask(todoObj.id)" class="btn btn-warning" >Delete</button></div></div></td>
+            <td>
+                <div class="d-flex flex-row">
+                    <div><button (click)="updateTask(todoObj.id)" class="btn btn-success">Update</button></div>
+                    <div><button (click)="deleteTask(todoObj.id)" class="btn btn-danger">Delete</button></div>
+                </div>
+            </td>
         </tr>
     </tbody>
+    <br />
+
 </table>
+
+<div><button (click)="addTask()" class="btn btn-info">Add New Task</button></div>
