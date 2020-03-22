@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,20 @@ export class ToDoService {
 
   constructor(private http: HttpClient) { }
 
+  basicAuth(){
+    let username = "root";
+    let password = "toor";
+    let basicAuthString = "Basic " + window.btoa(username + ":" + password);
+
+    return basicAuthString;
+  }
+
   findAllToDos(username) {
-    return this.http.get(`http://localhost:8080/users/${username}/todos`);
+    let basicAuth = this.basicAuth();
+
+    let headers = new HttpHeaders({Authorization :basicAuth});
+    
+    return this.http.get(`http://localhost:8080/users/${username}/todos`,{headers});
   }
 
   findToDo(username,id) {
