@@ -8,20 +8,8 @@ export class ToDoService {
 
   constructor(private http: HttpClient) { }
 
-  basicAuth(){
-    let username = "root";
-    let password = "toor";
-    let basicAuthString = "Basic " + window.btoa(username + ":" + password);
-
-    return basicAuthString;
-  }
-
   findAllToDos(username) {
-    let basicAuth = this.basicAuth();
-
-    let headers = new HttpHeaders({Authorization :basicAuth});
-    
-    return this.http.get(`http://localhost:8080/users/${username}/todos`,{headers});
+    return this.http.get(`http://localhost:8080/users/${username}/todos`);
   }
 
   findToDo(username,id) {

@@ -11,8 +11,9 @@ import { ErrorComponent } from './error/error.component';
 import { TodosComponent } from './todos/todos.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TodoComponent } from './todo/todo.component';
+import { BasicAuthInterceptorService } from './service/http/basic-auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { TodoComponent } from './todo/todo.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass: BasicAuthInterceptorService, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
