@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { JwtAuthenticationService } from '../service/jwt-authentiation.service';
 
 
 @Component({
@@ -17,7 +18,6 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   loggingMsg = '';
 
-  constructor(private route: Router, private basicAuthService: BasicAuthenticationService, private hardcodedAuthentication: HardcodedAuthenticationService) { }
 
   ngOnInit() {
   }
@@ -33,12 +33,31 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  handleLoginWithBasicAuth() {
-    this.basicAuthService.executeAuthService(this.username, this.password).subscribe(
+  //  constructor(private route: Router, private basicAuthService: BasicAuthenticationService, private hardcodedAuthentication: HardcodedAuthenticationService) { }
+
+  // handleLoginWithBasicAuth() {
+  //   this.basicAuthService.executeAuthService(this.username, this.password).subscribe(
+  //     data => {
+  //       console.log(data);
+  //       this.invalidLogin = false;
+  //     this.route.navigate(['welcome', this.username])
+  //     }, error => {
+  //       this.invalidLogin = true;
+  //       this.loggingMsg = 'Invalid Username or Password';
+  //       console.log(error);
+  //     }
+  //   );
+
+  // }
+
+  constructor(private route: Router, private jwtAuthService: JwtAuthenticationService, private hardcodedAuthentication: HardcodedAuthenticationService) { }
+
+  handleLoginWithJWTAuth() {
+    this.jwtAuthService.executeAuthService(this.username, this.password).subscribe(
       data => {
         console.log(data);
         this.invalidLogin = false;
-      this.route.navigate(['welcome', this.username])
+        this.route.navigate(['welcome', this.username])
       }, error => {
         this.invalidLogin = true;
         this.loggingMsg = 'Invalid Username or Password';
